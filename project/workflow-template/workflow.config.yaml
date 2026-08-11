@@ -1,0 +1,58 @@
+workflow:
+  name: bci_algorithm_pipeline
+  version: 2
+
+execution:
+  topology: subagents # subagents | separate_threads
+  role_creation: on_demand # on_demand | upfront
+  workspace_strategy: shared_checkout
+  single_writer: true
+  reuse_existing_role: true
+  state_transition_authority: orchestrator
+
+events:
+  require_event_log: true
+  direct_adjacent_notifications: true
+  main_must_receive_copy: true
+
+automation:
+  mode: gated # gated | phase_gated | full_auto
+  max_repair_rounds_per_phase: 3
+  require_user_confirmation:
+    after_design: true
+    before_implementation: true
+    before_scope_expansion: true
+    before_new_dependency: true
+    before_destructive_action: true
+    before_final_acceptance: true
+
+agent_permissions:
+  design:
+    can_modify_code: false
+    can_spawn_next: false
+  implement:
+    can_modify_code: true
+    can_modify_design: false
+  review:
+    can_modify_code: false
+    can_write_review_log: true
+  validation:
+    can_modify_code: false
+    can_write_validation_report: true
+
+handoff:
+  require_handoff_file: true
+  require_run_state_update: true
+  require_agent_id_registry: true
+  require_event_log_update: true
+
+blocking_rules:
+  design:
+    unresolved_blocking_questions: stop
+  review:
+    open_p0: stop
+    open_p1: stop
+    open_p2: repair_or_waive
+  validation:
+    missing_test_evidence: fail
+    design_mismatch: fail

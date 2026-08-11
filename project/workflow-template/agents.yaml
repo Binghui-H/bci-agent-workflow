@@ -1,0 +1,73 @@
+registry_version: 2
+workflow: bci-algorithm-development
+run_id: "<fill-run-id>"
+status: "INTAKE"
+topology: subagents # subagents | separate_threads
+
+agents:
+  main:
+    role: orchestrator
+    status: active
+    transport:
+      kind: thread
+      agent_id: ""
+      canonical_name: ""
+      thread_id: "<main-thread-id>"
+      host_id: ""
+  design:
+    role: background-design
+    status: unassigned
+    transport:
+      kind: unassigned
+      agent_id: ""
+      canonical_name: ""
+      thread_id: ""
+      host_id: ""
+  implement:
+    role: implementation
+    status: unassigned
+    transport:
+      kind: unassigned
+      agent_id: ""
+      canonical_name: ""
+      thread_id: ""
+      host_id: ""
+  review:
+    role: review-repair
+    status: unassigned
+    transport:
+      kind: unassigned
+      agent_id: ""
+      canonical_name: ""
+      thread_id: ""
+      host_id: ""
+  validation:
+    role: final-validation
+    status: unassigned
+    transport:
+      kind: unassigned
+      agent_id: ""
+      canonical_name: ""
+      thread_id: ""
+      host_id: ""
+
+routing:
+  state_transition_authority: main
+  direct_adjacent_notifications: true
+  main_receives_every_event: true
+
+allowed_notifications:
+  main: ["design", "implement", "review", "validation"]
+  design: ["main", "implement"]
+  implement: ["review", "main"]
+  review: ["implement", "validation", "main"]
+  validation: ["main"]
+
+sources_of_truth:
+  task: ".agent-workflow/TASK.md"
+  design: ".agent-workflow/DESIGN.md"
+  phase_plan: ".agent-workflow/PHASE_PLAN.md"
+  handoff: ".agent-workflow/HANDOFF.md"
+  event_log: ".agent-workflow/EVENT_LOG.md"
+  review_log: ".agent-workflow/REVIEW_LOG.md"
+  validation_report: ".agent-workflow/VALIDATION_REPORT.md"

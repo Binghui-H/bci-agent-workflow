@@ -1,0 +1,5 @@
+interface:
+  display_name: "BCI Design"
+  short_description: "Design BCI algorithm contracts and phases"
+  default_prompt: "Use $bci-design to turn this BCI algorithm request into a design and phase plan."
+

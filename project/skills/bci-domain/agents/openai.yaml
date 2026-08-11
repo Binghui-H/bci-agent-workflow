@@ -1,0 +1,5 @@
+interface:
+  display_name: "BCI Domain"
+  short_description: "Apply BCI signal and algorithm contracts"
+  default_prompt: "Use $bci-domain when working on EEG, EMG, EOG, IMU, or other BCI algorithm tasks."
+

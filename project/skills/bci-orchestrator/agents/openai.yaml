@@ -1,0 +1,5 @@
+interface:
+  display_name: "BCI Orchestrator"
+  short_description: "Run the BCI multi-agent workflow"
+  default_prompt: "Use $bci-orchestrator to initialize and coordinate a BCI algorithm workflow."
+

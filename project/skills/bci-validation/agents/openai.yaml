@@ -1,0 +1,5 @@
+interface:
+  display_name: "BCI Validation"
+  short_description: "Validate final BCI algorithm delivery"
+  default_prompt: "Use $bci-validation to perform final validation against the BCI design and review record."
+

@@ -1,0 +1,5 @@
+interface:
+  display_name: "BCI Review Repair"
+  short_description: "Review BCI algorithm changes and repairs"
+  default_prompt: "Use $bci-review-repair to review this BCI implementation phase and record repair issues."
+

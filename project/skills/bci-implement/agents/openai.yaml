@@ -1,0 +1,5 @@
+interface:
+  display_name: "BCI Implement"
+  short_description: "Implement BCI algorithm phases from design"
+  default_prompt: "Use $bci-implement to complete the next approved BCI implementation phase."
+
